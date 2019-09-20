@@ -138,13 +138,13 @@ class GraspSet
         double depth_; ///< the hand depth (length of fingers)
         double height_; ///< the hand extends plus/minus this value along the hand axis
         double init_bite_; ///< the minimum object height
-
-        HandGeometry() : finger_width_(0.0), outer_diameter_(0.0), depth_(0.0), height_(0.0), init_bite_(0.0) { }
+        double max_depth_; ///< the maximum depth the hand could move on the object
+        HandGeometry() : finger_width_(0.0), outer_diameter_(0.0), depth_(0.0), height_(0.0), init_bite_(0.0), max_depth_(0.0) { }
 
         HandGeometry(double finger_width, double outer_diameter, double hand_depth, double hand_height,
-          double init_bite)
+          double init_bite, double max_depth)
         : finger_width_(finger_width), outer_diameter_(outer_diameter), depth_(hand_depth),
-          height_(hand_height), init_bite_(init_bite) {  }
+          height_(hand_height), init_bite_(init_bite), max_depth_(max_depth) {  }
     };
 
     /**

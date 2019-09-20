@@ -60,11 +60,11 @@ typedef pcl::PointCloud<pcl::PointXYZRGBA> PointCloudRGBA;
 /** HandSearch class
  *
  * \brief Search for grasp hypotheses.
- * 
+ *
  * This class searches for grasp hypotheses in a point cloud by first calculating a local reference frame for a small
  * point neighborhood, and then finding geometrically feasible grasp hypotheses for a larger point neighborhood. It
  * can also estimate whether the grasp is antipodal from the normals of the point neighborhood.
- * 
+ *
  */
 class HandSearch
 {
@@ -92,6 +92,7 @@ public:
     double hand_depth_; ///< the hand depth (length of fingers)
     double hand_height_; ///< the hand extends plus/minus this value along the hand axis
     double init_bite_; ///< the minimum object height
+    double max_depth_;
   };
 
   /**
@@ -189,4 +190,4 @@ private:
   static const int ROTATION_AXIS_CURVATURE_AXIS; ///< curvature axis of local reference frame
 };
 
-#endif /* HAND_SEARCH_H */ 
+#endif /* HAND_SEARCH_H */
