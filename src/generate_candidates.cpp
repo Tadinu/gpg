@@ -49,12 +49,16 @@ int main(int argc, char* argv[])
   double hand_depth = config_file.getValueOfKey<double>("hand_depth", 0.06);
   double hand_height  = config_file.getValueOfKey<double>("hand_height", 0.02);
   double init_bite  = config_file.getValueOfKey<double>("init_bite", 0.01);
+  double max_depth  = config_file.getValueOfKey<double>("max_depth", 0.02);
+  double deepen_step = config_file.getValueOfKey<double>("deepen_step", 0.001);
 
   std::cout << "finger_width: " << finger_width << "\n";
   std::cout << "hand_outer_diameter: " << hand_outer_diameter << "\n";
   std::cout << "hand_depth: " << hand_depth << "\n";
   std::cout << "hand_height: " << hand_height << "\n";
   std::cout << "init_bite: " << init_bite << "\n";
+  std::cout << "max_depth: " << max_depth << "\n";
+  std::cout << "deepen_step: " << deepen_step << "\n";
 
   bool voxelize = config_file.getValueOfKey<bool>("voxelize", true);
   bool remove_outliers = config_file.getValueOfKey<bool>("remove_outliers", false);
@@ -98,11 +102,15 @@ int main(int argc, char* argv[])
   hand_search_params.hand_depth_ = hand_depth;
   hand_search_params.hand_height_ = hand_height;
   hand_search_params.init_bite_ = init_bite;
+  hand_search_params.max_depth_ = max_depth;
+  hand_search_params.deepen_step_ = deepen_step;
+
   hand_search_params.nn_radius_frames_ = nn_radius;
   hand_search_params.num_orientations_ = num_orientations;
   hand_search_params.num_samples_ = num_samples;
   hand_search_params.num_threads_ = num_threads;
   hand_search_params.rotation_axis_ = rotation_axis;
+
   CandidatesGenerator candidates_generator(generator_params, hand_search_params);
 
   // Set the camera pose.

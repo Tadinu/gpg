@@ -92,7 +92,8 @@ public:
     double hand_depth_; ///< the hand depth (length of fingers)
     double hand_height_; ///< the hand extends plus/minus this value along the hand axis
     double init_bite_; ///< the minimum object height
-    double max_depth_;
+    double max_depth_; ///< the maximum depth the hand could move on the object
+    double deepen_step_; ///< the step size of deepening hand from init_bite_ to max_depth_
   };
 
   /**

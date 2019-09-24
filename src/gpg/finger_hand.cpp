@@ -94,7 +94,8 @@ void FingerHand::evaluateHand(int idx)
 }
 
 
-int FingerHand::deepenHand(const Eigen::Matrix3Xd& points, double min_depth, double max_depth)
+int FingerHand::deepenHand(const Eigen::Matrix3Xd& points, double min_depth, double max_depth,
+                           double deepen_step_size)
 {
   std::vector<int> hand_idx;
 
@@ -116,11 +117,10 @@ int FingerHand::deepenHand(const Eigen::Matrix3Xd& points, double min_depth, dou
   int opposite_idx = fingers_.size() / 2 + hand_eroded_idx; // opposite finger index
 
   // Attempt to deepen hand (move as far onto the object as possible without collision).
-  const double DEEPEN_STEP_SIZE = 0.005;
   FingerHand new_hand = *this;
   FingerHand last_new_hand = new_hand;
 
-  for (double depth = min_depth + DEEPEN_STEP_SIZE; depth <= max_depth; depth += DEEPEN_STEP_SIZE)
+  for (double depth = min_depth + deepen_step_size; depth <= max_depth; depth += deepen_step_size)
   {
     // Check if the new hand placement is feasible
     new_hand.evaluateFingers(points, depth, hand_eroded_idx);

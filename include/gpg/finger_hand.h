@@ -41,11 +41,11 @@
 /** FingerHand class
  *
  * \brief Calculate collision-free finger placements.
- * 
+ *
  * This class calculates collision-free finger placements. The parameters are the outer diameter, the width of the
  * fingers, and the length of the fingers of the robot hand. Also considers the "bite" that the grasp must have. The
  * bite describes by how much the robot hand can be moved onto the object.
- * 
+ *
  */
 class FingerHand
 {
@@ -83,7 +83,8 @@ class FingerHand
      * \param max_depth the maximum depth that the hand can be moved onto the object
      * \return the index of the middle finger placement
      */
-    int deepenHand(const Eigen::Matrix3Xd& points, double min_depth, double max_depth);
+    int deepenHand(const Eigen::Matrix3Xd& points, double min_depth, double max_depth,
+                   double deepen_step_size = 0.005);
 
     /**
      * \brief Compute which of the given points are located in the closing region of the robot hand.

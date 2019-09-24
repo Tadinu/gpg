@@ -186,7 +186,7 @@ std::vector<GraspSet> HandSearch::evaluateHands(const CloudCamera& cloud_cam, co
   PointList point_list(points, cloud_cam.getNormals(), cloud_cam.getCameraSource(), cloud_cam.getViewPoints());
   PointList nn_points;
   GraspSet::HandGeometry hand_geom(params_.finger_width_, params_.hand_outer_diameter_, params_.hand_depth_,
-    params_.hand_height_, params_.init_bite_, params_.max_depth_);
+    params_.hand_height_, params_.init_bite_, params_.max_depth_, params_.deepen_step_);
 //  GraspSet hand_set(hand_geom, angles, params_.rotation_axis_);
 
 #ifdef _OPENMP // parallelization using OpenMP
