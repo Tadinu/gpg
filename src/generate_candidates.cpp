@@ -2,6 +2,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <fstream>
 
 // Custom
 #include <gpg/candidates_generator.h>
@@ -127,9 +128,9 @@ int main(int argc, char* argv[])
 
   // Load surface normals from file.
   std::cout << argc << "\n";
-  if (argc > 3)
+  if (argc > 4)
   {
-    cloud_cam.setNormalsFromFile(argv[3]);
+    cloud_cam.setNormalsFromFile(argv[4]);
     std::cout << "Loaded surface normals from file.\n";
   }
 
@@ -138,6 +139,18 @@ int main(int argc, char* argv[])
 
   // Generate a list of grasp candidates.
   std::vector<Grasp> candidates = candidates_generator.generateGraspCandidates(cloud_cam);
+
+  std::ofstream graspFile(argv[3]);
+  graspFile << "trans_x,trans_y,trans_z,rot_w,rot_x,rot_y,rot_z,width\n";
+
+  for(int i = 0; i < candidates.size(); ++i)
+  {
+    Eigen::Quaterniond q(candidates[i].getFrame());
+    const Eigen::Vector3d &t(candidates[i].getPosition());
+    graspFile << t.x() << ' ' << t.y() << ' ' << t.z() << ' ' << q.w() << ' ' << q.x() << ' ' << q.y() << ' ' << q.z() << " 0.0" << '\n';
+  }
+
+  graspFile.close();
 
   return 0;
 }
